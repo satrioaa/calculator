@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Kalkulator</string>
+    <string name="pref_key">PrefNotesKey</string>
+    <string name="result_key">ResultNotesKey</string>
 </resources>

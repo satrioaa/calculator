@@ -2,6 +2,8 @@ package com.satrioarda.kalkulator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton rb1;
     Button btnHitung;
     TextView tvHasil;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         tvHasil=(TextView) findViewById(R.id.tvHasil);
         btnHitung=(Button) findViewById(R.id.count);
         rg1=(RadioGroup) findViewById(R.id.rg_hitung);
+        pref=this.getSharedPreferences(getString(R.string.pref_key), Context.MODE_PRIVATE);
 
         rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -52,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 String hasil1=String.valueOf(hasil);
                 tvHasil.setText(hasil1);
+
+                pref.edit().putString(getString(R.string.result_key), String.valueOf(hasil)).apply();
             }
             });
 
@@ -83,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 String hasil1=String.valueOf(hasil);
                 tvHasil.setText(hasil1);
+
+                pref.edit().putString(getString(R.string.result_key), String.valueOf(hasil)).apply();
             }
         });
     }
